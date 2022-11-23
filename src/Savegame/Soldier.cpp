@@ -2001,23 +2001,90 @@ void Soldier::trainPhys(int customTrainingFactor)
 {
 	UnitStats caps1 = _rules->getStatCaps();
 	UnitStats caps2 = _rules->getTrainingStatCaps();
+
 	// no P.T. for the wounded
+	if (_rank < 1)
+	{
+		_timeFactorLimit = _rookieTimeFactor;
+	}
+	else if (_rank < 2)
+	{
+		_timeFactorLimit = _squaddieTimeFactor;
+	}
+
 	if (hasFullHealth())
 	{
-		if(_currentStats.firing < caps1.firing && RNG::generate(0, caps2.firing) > _currentStats.firing && RNG::percent(customTrainingFactor))
-			_currentStats.firing++;
-		if(_currentStats.health < caps1.health && RNG::generate(0, caps2.health) > _currentStats.health && RNG::percent(customTrainingFactor))
-			_currentStats.health++;
-		if(_currentStats.melee < caps1.melee && RNG::generate(0, caps2.melee) > _currentStats.melee && RNG::percent(customTrainingFactor))
-			_currentStats.melee++;
-		if(_currentStats.throwing < caps1.throwing && RNG::generate(0, caps2.throwing) > _currentStats.throwing && RNG::percent(customTrainingFactor))
-			_currentStats.throwing++;
-		if(_currentStats.strength < caps1.strength && RNG::generate(0, caps2.strength) > _currentStats.strength && RNG::percent(customTrainingFactor))
-			_currentStats.strength++;
-		if(_currentStats.tu < caps1.tu && RNG::generate(0, caps2.tu) > _currentStats.tu && RNG::percent(customTrainingFactor))
-			_currentStats.tu++;
-		if(_currentStats.stamina < caps1.stamina && RNG::generate(0, caps2.stamina) > _currentStats.stamina && RNG::percent(customTrainingFactor))
-			_currentStats.stamina++;
+		if (_currentStats.firing < caps1.firing && RNG::generate(0, caps2.firing) > _currentStats.firing && RNG::percent(customTrainingFactor))
+		{
+
+			_tempTimeFiringFactor++;
+			if (_tempTimeFiringFactor == _timeFactorLimit)
+			{
+				_tempTimeFiringFactor = 0;
+				_currentStats.firing++;
+			}
+		}
+
+		if (_currentStats.health < caps1.health && RNG::generate(0, caps2.health) > _currentStats.health && RNG::percent(customTrainingFactor))
+		{
+			_tempTimeHealthFactor++;
+			if (_tempTimeHealthFactor == _timeFactorLimit)
+			{
+				_tempTimeHealthFactor = 0;
+				_currentStats.health++;
+			}
+		}
+
+		if (_currentStats.melee < caps1.melee && RNG::generate(0, caps2.melee) > _currentStats.melee && RNG::percent(customTrainingFactor))
+		{
+			_tempTimeMeleeFactor++;
+			if (_tempTimeMeleeFactor == _timeFactorLimit)
+			{
+				_tempTimeMeleeFactor = 0;
+				_currentStats.melee++;
+			}
+		}
+
+		if (_currentStats.throwing < caps1.throwing && RNG::generate(0, caps2.throwing) > _currentStats.throwing && RNG::percent(customTrainingFactor))
+		{
+			_tempTimeThrowingFactor++;
+			if (_tempTimeThrowingFactor == _timeFactorLimit)
+			{
+				_tempTimeThrowingFactor = 0;
+				_currentStats.throwing++;
+			}
+		}
+
+		if (_currentStats.strength < caps1.strength && RNG::generate(0, caps2.strength) > _currentStats.strength && RNG::percent(customTrainingFactor))
+		{
+			_tempTimeStrengthFactor++;
+			if (_tempTimeStrengthFactor == _timeFactorLimit)
+			{
+				_tempTimeStrengthFactor = 0;
+				_currentStats.strength++;
+			}
+		}
+
+		if (_currentStats.tu < caps1.tu && RNG::generate(0, caps2.tu) > _currentStats.tu && RNG::percent(customTrainingFactor))
+
+		{
+			_tempTimeTuFactor++;
+			if (_tempTimeTuFactor == _timeFactorLimit)
+			{
+				_tempTimeTuFactor = 0;
+				_currentStats.tu++;
+			}
+		}
+
+		if (_currentStats.stamina < caps1.stamina && RNG::generate(0, caps2.stamina) > _currentStats.stamina && RNG::percent(customTrainingFactor))
+		{
+			_tempTimeStaminaFactor++;
+			if (_tempTimeStaminaFactor == _timeFactorLimit)
+			{
+				_tempTimeStaminaFactor = 0;
+				_currentStats.stamina++;
+			}
+		}
 	}
 }
 
