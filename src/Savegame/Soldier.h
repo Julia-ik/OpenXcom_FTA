@@ -131,19 +131,6 @@ private:
 	std::vector<const RuleSoldierBonus*> _bonusCache;
 	ScriptValues<Soldier> _scriptValues;
 
-	const int _rookieTimeFactor = 4;
-	const int _squaddieTimeFactor = 2;
-
-	int _timeFactorLimit = 1;
-	int _tempTimeFiringFactor = 0;
-	int _tempTimeHealthFactor = 0;
-	int _tempTimeMeleeFactor = 0;
-	int _tempTimeThrowingFactor = 0;
-	int _tempTimeStrengthFactor = 0;
-	int _tempTimeTuFactor = 0;
-	int _tempTimeStaminaFactor = 0;
-	
-
 	int generateScienceStat(int min, int max);
 
   public:
