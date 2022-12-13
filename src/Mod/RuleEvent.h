@@ -22,6 +22,7 @@
 #include <vector>
 #include <yaml-cpp/yaml.h>
 #include "../Savegame/WeightedOptions.h"
+#include "../Engine/Script.h"
 
 namespace OpenXcom
 {
@@ -68,7 +69,10 @@ private:
 	std::string _interruptResearch;
 	int _timer, _timerRandom;
 	std::map<int, CustomAnswer> _answers;
-public:
+	Uint8 _backgroundColor;
+
+	public:
+	const Uint8 &getBackgroundColor() const	{ return _backgroundColor; }
 	/// Creates a blank RuleEvent.
 	RuleEvent(const std::string &name);
 	/// Cleans up the event ruleset.
@@ -127,6 +131,8 @@ public:
 	int getTimerRandom() const { return _timerRandom; }
 	/// Gets custom player answers for this event.
 	const std::map<int, CustomAnswer>&getCustomAnswers() const { return _answers; }
+
+	
 };
 
 }

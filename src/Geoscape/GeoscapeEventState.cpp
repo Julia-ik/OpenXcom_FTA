@@ -86,6 +86,7 @@ GeoscapeEventState::GeoscapeEventState(const RuleEvent& eventRule) : _eventRule(
 
 	// Set up objects
 	_window->setBackground(_game->getMod()->getSurface(_eventRule.getBackground()));
+	_window->setColor(_eventRule.getBackgroundColor());
 
 	_txtTitle->setAlign(ALIGN_CENTER);
 	_txtTitle->setBig();

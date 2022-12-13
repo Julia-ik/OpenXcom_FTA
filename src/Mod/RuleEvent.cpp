@@ -19,11 +19,12 @@
 #include "RuleEvent.h"
 #include "../Engine/Exception.h"
 
+
 namespace OpenXcom
 {
 
 RuleEvent::RuleEvent(const std::string &name) : _name(name), _background("BACK13.SCR"), _city(false), _points(0), _funds(0), _loyalty(0),
-												_spawnedPersons(0), _timer(30), _timerRandom(0)
+												_spawnedPersons(0), _timer(30), _timerRandom(0), _backgroundColor(239)
 {
 }
 
@@ -54,7 +55,7 @@ void RuleEvent::load(const YAML::Node &node)
 	{
 		_spawnedSoldier = node["spawnedSoldier"];
 	}
-	_reputationScore = node["reputationScore"].as<std::map<std::string, int>>(_reputationScore);
+	_reputationScore = node["reputationScore"].as<std::map<std::string, int> >(_reputationScore);
 	_everyMultiItemList = node["everyMultiItemList"].as<std::map<std::string, int> >(_everyMultiItemList);
 	_everyItemList = node["everyItemList"].as<std::vector<std::string> >(_everyItemList);
 	_randomItemList = node["randomItemList"].as<std::vector<std::string> >(_randomItemList);
@@ -68,7 +69,7 @@ void RuleEvent::load(const YAML::Node &node)
 	_timer = node["timer"].as<int>(_timer);
 	_timerRandom = node["timerRandom"].as<int>(_timerRandom);
 
-	if (const YAML::Node& customAnswers = node["customAnswers"])
+	if (const YAML::Node &customAnswers = node["customAnswers"])
 	{
 		if (customAnswers.size() > 4)
 		{
